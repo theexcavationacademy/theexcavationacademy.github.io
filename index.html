@@ -4,931 +4,558 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Excavation Academy — Build Crews That Know the Work</title>
-<meta name="description" content="North America's first structured training and certification platform built specifically for civil excavation and underground construction. Grounded in industry standards. Built for the field.">
+<meta name="description" content="North America's first structured training and certification platform for civil excavation and underground construction. 7 day free trial. Built for workers. Built for owners.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #C8900A;
-    --gold-light: #D4A017;
-    --dark: #FFFFFF;
-    --dark2: #F5F5F5;
-    --dark3: #EEEEEE;
-    --grey: #666666;
-    --light-grey: #F0F0F0;
-    --white: #1A1A1A;
-    --orange: #E8821A;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: #FFFFFF;
-    color: #111111;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.0;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 24px 60px;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 900px;
-    height: 900px;
-    background: radial-gradient(ellipse, rgba(200,144,10,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-
-  .logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .logo-icon {
-    width: 64px;
-    height: 64px;
-    background: #C8900A;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 22px;
-    color: #111111;
-    flex-shrink: 0;
-  }
-
-  .logo-text {
-    text-align: left;
-  }
-
-  .logo-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #111111;
-    line-height: 1.1;
-  }
-
-  .logo-tag {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #C8900A;
-    font-weight: 500;
-  }
-
-  .eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #C8900A;
-    margin-bottom: 20px;
-    animation: fadeUp 0.8s ease 0.1s both;
-  }
-
-  .hero-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(52px, 9vw, 110px);
-    line-height: 0.92;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease 0.2s both;
-  }
-
-  .hero-headline em {
-    font-style: normal;
-    color: #C8900A;
-    display: block;
-  }
-
-  .hero-sub {
-    font-size: clamp(16px, 2vw, 20px);
-    font-weight: 300;
-    color: #555555;
-    max-width: 560px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
-    animation: fadeUp 0.8s ease 0.3s both;
-  }
-
-  .hero-cta-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    animation: fadeUp 0.8s ease 0.4s both;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #C8900A;
-    color: #111111;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 18px 36px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-  }
-
-  .btn-primary:hover {
-    background: #D4A017;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(212,160,23,0.3);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: transparent;
-    color: #111111;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 18px 36px;
-    text-decoration: none;
-    border: 1px solid rgba(0,0,0,0.2);
-    transition: all 0.2s ease;
-  }
-
-  .btn-secondary:hover {
-    border-color: #C8900A;
-    color: #C8900A;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-    margin-top: 64px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.8s ease 0.5s both;
-  }
-
-  .stat {
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 42px;
-    color: #C8900A;
-    line-height: 1;
-    display: block;
-  }
-
-  .stat-label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #555555;
-    font-weight: 500;
-    margin-top: 4px;
-    display: block;
-  }
-
-  .stat-divider {
-    width: 1px;
-    height: 50px;
-    background: rgba(0,0,0,0.08);
-    align-self: center;
-  }
-
-  /* ── STRIP ── */
-  .strip {
-    background: #C8900A;
-    padding: 18px 24px;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .strip-inner {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #111111;
-  }
-
-  /* ── SECTION ── */
-  section {
-    position: relative;
-    z-index: 1;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #C8900A;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(36px, 5vw, 62px);
-    line-height: 0.95;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .section-body {
-    font-size: 17px;
-    font-weight: 300;
-    color: #555555;
-    line-height: 1.75;
-    max-width: 600px;
-  }
-
-  /* ── ABOUT ── */
-  .about {
-    padding: 100px 0;
-    background: #F5F5F5;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .about-quote {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: clamp(24px, 3vw, 38px);
-    line-height: 1.2;
-    color: #111111;
-    border-left: 4px solid #C8900A;
-    padding-left: 28px;
-    margin-bottom: 32px;
-  }
-
-  .about-body {
-    font-size: 16px;
-    font-weight: 300;
-    color: #555555;
-    line-height: 1.8;
-    margin-bottom: 16px;
-  }
-
-  .about-right {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .fact-card {
-    background: #EEEEEE;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-left: 3px solid var(--gold);
-    padding: 24px 28px;
-  }
-
-  .fact-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #C8900A;
-    margin-bottom: 8px;
-  }
-
-  .fact-body {
-    font-size: 15px;
-    font-weight: 300;
-    color: #555555;
-    line-height: 1.6;
-  }
-
-  /* ── TIERS ── */
-  .tiers {
-    padding: 100px 0;
-    background: #FFFFFF;
-  }
-
-  .tiers-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .tiers-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: rgba(0,0,0,0.06);
-  }
-
-  .tier-card {
-    background: #F5F5F5;
-    padding: 40px 28px;
-    position: relative;
-    transition: background 0.2s ease;
-  }
-
-  .tier-card:hover {
-    background: #EEEEEE;
-  }
-
-  .tier-card.featured {
-    background: #EEEEEE;
-    border-top: 3px solid var(--gold);
-  }
-
-  .tier-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 64px;
-    line-height: 1;
-    color: rgba(0,0,0,0.06);
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-
-  .tier-badge {
-    display: inline-block;
-    background: #C8900A;
-    color: #111111;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    margin-bottom: 16px;
-  }
-
-  .tier-badge.live {
-    background: #C8900A;
-  }
-
-  .tier-badge.coming {
-    background: transparent;
-    border: 1px solid rgba(0,0,0,0.2);
-    color: #888888;
-  }
-
-  .tier-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 24px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    line-height: 1.1;
-  }
-
-  .tier-role {
-    font-size: 13px;
-    color: #C8900A;
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-
-  .tier-desc {
-    font-size: 14px;
-    font-weight: 300;
-    color: #666666;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .tier-modules {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.25);
-  }
-
-  .tier-modules span {
-    color: #111111;
-  }
-
-  /* ── TOOLS ── */
-  .tools {
-    padding: 100px 0;
-    background: #F5F5F5;
-  }
-
-  .tools-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: start;
-    margin-top: 60px;
-  }
-
-  .tools-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .tool-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    padding: 20px 24px;
-    background: #EEEEEE;
-    border: 1px solid rgba(0,0,0,0.05);
-    text-decoration: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .tool-item:hover {
-    border-color: #C8900A;
-  }
-
-  .tool-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(200,144,10,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 18px;
-  }
-
-  .tool-content {}
-
-  .tool-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #111111;
-    margin-bottom: 4px;
-  }
-
-  .tool-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: #777777;
-    line-height: 1.5;
-  }
-
-  .tools-cta {
-    padding: 48px;
-    background: #EEEEEE;
-    border: 1px solid rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .tools-cta-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 36px;
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  .tools-cta-body {
-    font-size: 15px;
-    font-weight: 300;
-    color: #555555;
-    line-height: 1.7;
-  }
-
-  /* ── JOIN ── */
-  .join {
-    padding: 120px 0;
-    background: #FFFFFF;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .join::before {
-    content: '';
-    position: absolute;
-    bottom: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(ellipse, rgba(200,144,10,0.06) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .join-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(48px, 8vw, 96px);
-    text-transform: uppercase;
-    line-height: 0.9;
-    margin-bottom: 24px;
-  }
-
-  .join-headline span {
-    color: #C8900A;
-  }
-
-  .join-sub {
-    font-size: 18px;
-    font-weight: 300;
-    color: #555555;
-    max-width: 500px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #F5F5F5;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    padding: 40px 24px;
-  }
-
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .footer-brand {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #111111;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .footer-links a {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888888;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .footer-links a:hover {
-    color: #C8900A;
-  }
-
-  .footer-copy {
-    font-size: 12px;
-    color: rgba(0,0,0,0.15);
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0,0,0,0.05);
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .about-grid { grid-template-columns: 1fr; gap: 48px; }
-    .tiers-grid { grid-template-columns: 1fr 1fr; }
-    .tools-grid { grid-template-columns: 1fr; }
-    .stat-divider { display: none; }
-  }
-
-  @media (max-width: 600px) {
-    .tiers-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 32px; }
-    .tools-cta { padding: 32px 24px; }
-  }
+:root{--gold:#C8900A;--gold-light:#D4A017;--bg:#FFFFFF;--bg2:#F5F5F5;--bg3:#EEEEEE;--dark:#111111;--dark2:#1A1A1A;--text:#1A1A1A;--muted:#555555;--muted2:#777777;--border:rgba(0,0,0,0.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;padding-bottom:80px;}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);text-decoration:none;}
+.nav-brand span{color:var(--gold);}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#FFF;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:10px 22px;text-decoration:none;transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-light);}
+.hero{padding:80px 24px 60px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:85vh;}
+.eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';display:inline-block;width:32px;height:2px;background:var(--gold);}
+.hero-headline{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(52px,7vw,88px);line-height:0.92;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:16px;color:var(--text);}
+.hero-headline em{font-style:normal;color:var(--gold);display:block;}
+.hero-tagline{font-size:15px;font-weight:500;color:var(--gold);background:rgba(200,144,10,0.08);border-left:3px solid var(--gold);padding:10px 16px;margin-bottom:24px;font-style:italic;}
+.hero-sub{font-size:17px;font-weight:300;color:var(--muted);line-height:1.75;margin-bottom:24px;max-width:480px;}
+.trial-badge{display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 14px;margin-bottom:24px;}
+.trial-badge::before{content:'●';color:#22C55E;font-size:10px;}
+.hero-cta-group{display:flex;flex-direction:column;gap:8px;align-items:flex-start;}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#FFF;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;padding:18px 36px;text-decoration:none;transition:all 0.2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,144,10,0.25);}
+.btn-micro{font-size:13px;color:var(--muted2);font-weight:400;padding-left:4px;line-height:1.5;max-width:360px;}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;padding:14px 28px;text-decoration:none;border:1px solid rgba(0,0,0,0.2);transition:all 0.2s;}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);}
+.phone-mockup{width:280px;background:var(--dark2);border-radius:36px;padding:16px;box-shadow:0 32px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.08);}
+.phone-notch{width:80px;height:8px;background:var(--dark);border-radius:4px;margin:0 auto 16px;}
+.phone-screen{background:#0F0F0F;border-radius:24px;padding:20px 16px;min-height:420px;}
+.phone-module-badge{display:inline-block;background:var(--gold);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;margin-bottom:12px;}
+.phone-module-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:#FFF;text-transform:uppercase;line-height:1.1;margin-bottom:12px;}
+.phone-progress-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.phone-progress-bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-bottom:16px;}
+.phone-progress-fill{height:100%;width:65%;background:var(--gold);border-radius:2px;}
+.phone-lesson{background:rgba(255,255,255,0.05);border-left:2px solid rgba(255,255,255,0.15);padding:10px 12px;margin-bottom:8px;}
+.phone-lesson.active{background:rgba(200,144,10,0.15);border-left-color:var(--gold);}
+.phone-lesson-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FFF;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;}
+.phone-lesson.active .phone-lesson-title{color:var(--gold);}
+.phone-lesson-desc{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.4;}
+.phone-cta-btn{display:block;background:var(--gold);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:12px;margin-top:16px;border-radius:4px;text-decoration:none;}
+.phone-caption{font-size:12px;color:var(--muted2);text-align:center;font-style:italic;margin-top:16px;}
+.hero-right{display:flex;flex-direction:column;align-items:center;}
+.stats-strip{background:var(--dark2);padding:28px 24px;}
+.stats-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:24px;}
+.stat{text-align:center;}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:42px;color:var(--gold);line-height:1;display:block;}
+.stat-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:500;margin-top:4px;display:block;}
+.stat-div{width:1px;height:40px;background:rgba(255,255,255,0.1);}
+.gold-strip{background:var(--gold);padding:16px 24px;text-align:center;}
+.gold-strip p{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark);}
+.section{padding:100px 24px;}
+.section-alt{background:var(--bg2);}
+.container{max-width:1100px;margin:0 auto;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.section-label::before{content:'';display:inline-block;width:24px;height:2px;background:var(--gold);}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(36px,5vw,60px);line-height:0.95;text-transform:uppercase;margin-bottom:20px;color:var(--text);}
+.section-body{font-size:17px;font-weight:300;color:var(--muted);line-height:1.75;max-width:580px;}
+
+/* VIDEO SECTION */
+.video-section{background:var(--dark2);padding:80px 24px;}
+.video-wrap{max-width:480px;margin:0 auto;}
+.video-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;text-align:center;}
+.video-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,4.5vw,52px);line-height:0.95;text-transform:uppercase;text-align:center;color:#FFF;margin-bottom:32px;}
+.video-frame{position:relative;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.4);}
+.video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-quote{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(20px,2.5vw,30px);line-height:1.2;color:var(--text);border-left:4px solid var(--gold);padding-left:24px;margin-bottom:28px;}
+.about-body{font-size:16px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:14px;}
+.fact-card{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--gold);padding:20px 24px;margin-bottom:14px;}
+.fact-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.fact-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.6;}
+
+/* TIERS */
+.tiers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);margin-top:48px;}
+.tier-card{background:var(--bg);padding:36px 24px;position:relative;transition:background 0.2s;}
+.tier-card:hover{background:var(--bg2);}
+.tier-card.featured{border-top:3px solid var(--gold);background:var(--bg2);}
+.tier-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:56px;line-height:1;color:rgba(0,0,0,0.05);position:absolute;top:16px;right:16px;}
+.tier-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;margin-bottom:14px;}
+.tier-badge.live{background:var(--gold);color:#FFF;}
+.tier-badge.coming{border:1px solid rgba(0,0,0,0.15);color:var(--muted2);}
+.tier-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;margin-bottom:6px;color:var(--text);line-height:1.1;}
+.tier-role{font-size:12px;color:var(--gold);font-weight:500;margin-bottom:14px;letter-spacing:0.05em;}
+.tier-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.tier-skills{list-style:none;margin-bottom:16px;}
+.tier-skills li{font-size:12px;color:var(--muted);padding:3px 0;padding-left:14px;position:relative;}
+.tier-skills li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:10px;}
+.tier-modules{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);padding-top:12px;border-top:1px solid var(--border);}
+.tier-modules span{color:var(--text);}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;margin-top:48px;}
+.testimonial{background:var(--bg);border:1px solid var(--border);padding:32px 28px;display:flex;flex-direction:column;gap:16px;position:relative;}
+.testimonial-quote{font-family:'Barlow',sans-serif;font-size:16px;font-weight:400;color:var(--text);line-height:1.65;font-style:italic;}
+.testimonial.featured .testimonial-quote{font-size:18px;}
+.testimonial-author{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:16px;border-top:1px solid var(--border);}
+.testimonial-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold) 0%,#8B6508 100%);display:flex;align-items:center;justify-content:center;color:#FFF;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;flex-shrink:0;}
+.testimonial-meta{display:flex;flex-direction:column;}
+.testimonial-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:0.05em;color:var(--text);}
+.testimonial-role{font-size:12px;color:var(--muted2);font-weight:400;}
+.testimonial-mark{position:absolute;top:20px;right:24px;font-family:Georgia,serif;font-size:48px;color:var(--gold);opacity:0.2;line-height:1;}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px;}
+.tools-list{display:flex;flex-direction:column;gap:12px;}
+.tool-item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:var(--bg);border:1px solid var(--border);text-decoration:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.tool-item:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(200,144,10,0.1);}
+.tool-icon{width:36px;height:36px;background:rgba(200,144,10,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+.tool-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:0.05em;color:var(--text);margin-bottom:3px;}
+.tool-desc{font-size:12px;font-weight:300;color:var(--muted2);line-height:1.5;}
+.tool-tag{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;display:block;}
+.tools-cta-box{background:var(--dark2);padding:44px 40px;display:flex;flex-direction:column;gap:20px;position:sticky;top:80px;}
+.tools-cta-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;text-transform:uppercase;line-height:1;color:#FFF;}
+.tools-cta-title span{color:var(--gold);}
+.tools-cta-body{font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;}
+.tools-micro{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.5;}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.price-card{background:var(--bg);border:1px solid var(--border);padding:36px 28px;display:flex;flex-direction:column;gap:18px;position:relative;}
+.price-card.featured{border:2px solid var(--gold);transform:translateY(-8px);box-shadow:0 12px 40px rgba(200,144,10,0.15);}
+.price-best-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#FFF;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;}
+.price-tier{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;color:var(--text);}
+.price-amount{display:flex;align-items:baseline;gap:6px;}
+.price-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:48px;color:var(--text);line-height:1;}
+.price-period{font-size:14px;color:var(--muted2);}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin:8px 0;}
+.price-features li{font-size:14px;color:var(--muted);padding-left:22px;position:relative;line-height:1.5;}
+.price-features li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:bold;}
+.price-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#FFF;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:14px 24px;text-decoration:none;margin-top:auto;transition:background 0.2s;}
+.price-cta:hover{background:var(--gold-light);}
+.pricing-guarantee{text-align:center;margin-top:32px;font-size:14px;color:var(--muted);font-weight:500;}
+.pricing-guarantee strong{color:var(--text);}
+
+/* FAQ */
+.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:0;}
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0;}
+.faq-q{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--text);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
+.faq-q::after{content:'+';color:var(--gold);font-size:24px;font-weight:300;}
+.faq-a{font-size:15px;font-weight:300;color:var(--muted);line-height:1.7;padding-top:8px;}
+
+/* JOIN */
+.join{padding:120px 24px;text-align:center;background:var(--bg);}
+.join-headline{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(48px,8vw,92px);text-transform:uppercase;line-height:0.9;margin-bottom:20px;color:var(--text);}
+.join-headline span{color:var(--gold);}
+.join-sub{font-size:17px;font-weight:300;color:var(--muted);max-width:480px;margin:0 auto 8px;line-height:1.7;}
+.join-micro{font-size:13px;color:var(--muted2);margin-bottom:36px;}
+.join-trial{display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;padding:10px 18px;margin-bottom:24px;}
+.join-trial::before{content:'●';color:#22C55E;font-size:10px;}
+.join-btns{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;}
+
+/* STICKY MOBILE BAR */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark2);padding:12px 16px;z-index:200;border-top:2px solid var(--gold);}
+.sticky-cta a{display:block;background:var(--gold);color:#FFF;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;padding:14px;text-align:center;text-decoration:none;}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,0.06);padding:40px 24px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;color:#FFF;}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);width:100%;text-align:center;margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.hero-left>*{animation:fadeUp 0.7s ease both;}
+.hero-right{animation:fadeUp 0.7s ease 0.3s both;}
+
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-right{display:none;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .tiers-grid{grid-template-columns:1fr 1fr;}
+  .tools-grid{grid-template-columns:1fr;}
+  .tools-cta-box{position:static;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .price-card.featured{transform:none;}
+  .sticky-cta{display:block;}
+  body{padding-bottom:80px;}
+}
+@media(max-width:600px){.tiers-grid{grid-template-columns:1fr;}.stat-div{display:none;}}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="logo-wrap">
-    <div class="logo-icon">T.E.A</div>
-    <div class="logo-text">
-      <div class="logo-name">The Excavation<br>Academy</div>
-      <div class="logo-tag">Field Certified Training</div>
+<nav>
+  <a href="#" class="nav-brand">The <span>Excavation</span> Academy</a>
+  <a href="https://www.skool.com/the-excavation-academy-2540/about" class="nav-cta" target="_blank">Start Free Trial →</a>
+</nav>
+
+<section style="background:var(--bg);overflow:hidden;">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">North America's First Civil Excavation Training Platform</div>
+      <h1 class="hero-headline">You Can't Hire<br><em>Experience.</em><br>Build It.</h1>
+      <div class="hero-tagline">Built for the worker. Built for the owner. The system civil excavation has never had.</div>
+      <p class="hero-sub">Structured training and certification for civil excavation and underground construction. Grounded in industry standards. Developed alongside leading construction professionals.</p>
+      <div class="trial-badge">7 Day Free Trial · Cancel Anytime</div>
+      <div class="hero-cta-group">
+        <a href="https://www.skool.com/the-excavation-academy-2540/about" class="btn-primary" target="_blank">Start 7 Day Free Trial →</a>
+        <span class="btn-micro">Try T.E.A. for 7 days. If it is not what you expected — cancel before the trial ends and pay nothing.</span>
+        <a href="https://theexcavationacademy.github.io/tea-tools/" class="btn-secondary" target="_blank" style="margin-top:8px;">See Field Tools</a>
+      </div>
     </div>
-  </div>
-
-  <div class="eyebrow">North America's First Civil Excavation Training Platform</div>
-
-  <h1 class="hero-headline">
-    You Can't Hire<br>
-    <em>Experience.</em><br>
-    Build It.
-  </h1>
-
-  <p class="hero-sub">
-    Structured training and certification for civil excavation and underground construction workers. Grounded in industry standards. Developed alongside leading construction professionals.
-  </p>
-
-  <div class="hero-cta-group">
-    <a href="https://www.skool.com/the-excavation-academy-2540/about" class="btn-primary">
-      Join the Academy →
-    </a>
-    <a href="https://theexcavationacademy.github.io/tea-tools/" class="btn-secondary">
-      Free Field Tools
-    </a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">43</span>
-      <span class="stat-label">Modules Live</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num">114+</span>
-      <span class="stat-label">Members Enrolled</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num">138</span>
-      <span class="stat-label">Total Modules</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Certification Tiers</span>
+    <div class="hero-right">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-module-badge">Module 1.1 — Active</div>
+          <div class="phone-module-title">Underground Utility Identification</div>
+          <div class="phone-progress-label">Chapter Progress — 65%</div>
+          <div class="phone-progress-bar"><div class="phone-progress-fill"></div></div>
+          <div class="phone-lesson"><div class="phone-lesson-title">✓ The Six Utility Systems</div><div class="phone-lesson-desc">Color codes, depths, danger levels — North America universal</div></div>
+          <div class="phone-lesson active"><div class="phone-lesson-title">→ Call Before You Dig</div><div class="phone-lesson-desc">811, BC One Call, Dial Before You Dig — requirements by region</div></div>
+          <div class="phone-lesson"><div class="phone-lesson-title">Utility Protection Methods</div><div class="phone-lesson-desc">Tolerance zones, hand dig rules, vacuum excavation</div></div>
+          <div class="phone-lesson"><div class="phone-lesson-title">Damage Prevention & Response</div><div class="phone-lesson-desc">What to do if you hit a utility — step by step</div></div>
+          <a href="https://www.skool.com/the-excavation-academy-2540/about" class="phone-cta-btn" target="_blank">Continue Module →</a>
+        </div>
+      </div>
+      <p class="phone-caption">Grade 5 reading level &nbsp;·&nbsp; Works on any phone &nbsp;·&nbsp; No app needed</p>
     </div>
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="strip">
-  <div class="strip-inner">
-    Built on Training Within Industry Principles &nbsp;·&nbsp; WorkSafe BC OHS Section 20 Aligned &nbsp;·&nbsp; OSHA 29 CFR 1926 Aligned &nbsp;·&nbsp; North America-Wide
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">43</span><span class="stat-label">Modules Live Now</span></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-num">119+</span><span class="stat-label">Members Enrolled</span></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-num">138</span><span class="stat-label">Total Modules</span></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Certification Tiers</span></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">Day Free Trial</span></div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section class="about">
+<div class="gold-strip">
+  <p>WorkSafe BC OHS Section 20 &nbsp;·&nbsp; Alberta OHS Code Part 32 &nbsp;·&nbsp; OSHA 29 CFR 1926 Subpart P &nbsp;·&nbsp; Training Within Industry Methodology &nbsp;·&nbsp; North America-Wide</p>
+</div>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="video-wrap">
+    <div class="video-label">Built For The Worker · Built For The Owner</div>
+    <h2 class="video-title">Watch a 60 Second Walkthrough</h2>
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/VBsDW9cu6ks" title="The Excavation Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
   <div class="container">
     <div class="about-grid">
-      <div class="about-left">
+      <div>
         <div class="section-label">Built on Industry Standards</div>
-        <div class="about-quote">
-          "Grounded in the standards the industry already follows. Organized into the system it has always needed."
-        </div>
-        <p class="about-body">
-          The Excavation Academy curriculum is grounded in established industry standards — WorkSafe BC OHS Section 20, Alberta OHS Code Part 32, OSHA 29 CFR 1926 Subpart P, and the Training Within Industry instructional methodology.
-        </p>
-        <p class="about-body">
-          The knowledge comes from the industry. The system comes from T.E.A. Developed alongside leading construction professionals, regulatory bodies, and field experts across North America — organized into one accessible platform for the first time.
-        </p>
-        <p class="about-body">
-          Civil excavation has never had a structured training standard. Every worker learned differently. Every company trained differently. Every crew figured it out the hard way. T.E.A. changes that.
-        </p>
-        <p class="about-body" style="color: #C8900A; font-weight: 500;">
-          The best safety program is a trained crew.
-        </p>
+        <div class="about-quote">"Grounded in the standards the industry already follows. Organized into the system it has always needed."</div>
+        <p class="about-body">The Excavation Academy curriculum is grounded in established industry standards — WorkSafe BC OHS Section 20, Alberta OHS Code Part 32, OSHA 29 CFR 1926 Subpart P, and the Training Within Industry instructional methodology.</p>
+        <p class="about-body">The knowledge comes from the industry. The system comes from T.E.A. Developed alongside leading construction professionals, regulatory bodies, and field experts across North America — organized into one accessible platform for the first time.</p>
+        <p class="about-body">Civil excavation has never had a structured training standard. Every worker learned differently. Every company trained differently. Every crew figured it out the hard way. T.E.A. changes that.</p>
+        <p class="about-body" style="color:var(--gold);font-weight:600;margin-top:8px;">The best safety program is a trained crew.</p>
       </div>
-      <div class="about-right">
-        <div class="fact-card">
-          <div class="fact-title">The Mission</div>
-          <div class="fact-body">Civil excavation built the modern world. It deserves a training system that reflects that. T.E.A. exists to create the first universal training standard for this industry — accessible to every worker, on every site, across North America.</div>
+      <div>
+        <div class="fact-card"><div class="fact-title">For Workers</div><div class="fact-body">Your roadmap from ground crew to superintendent. 138 modules. 4 certification tiers. A credential that travels with you to every job site.</div></div>
+        <div class="fact-card"><div class="fact-title">For Owners</div><div class="fact-body">A consistent training system across every crew. Onboard new hires faster. Reduce liability and turnover. Build operations that scale without spreading your foreman thin.</div></div>
+        <div class="fact-card"><div class="fact-title">The Format</div><div class="fact-body">3 to 5 minute modules. Fully illustrated. Video explainers. Grade 5 reading level. 65 to 80% of construction workers are visual learners. Completed on a phone at lunch — not in a classroom pulling the foreman off production.</div></div>
+        <div class="fact-card"><div class="fact-title">The Standard</div><div class="fact-body">WorkSafe BC OHS Section 20, Alberta OHS Code Part 32, OSHA 29 CFR 1926 Subpart P, and Training Within Industry methodology — applied to civil excavation for the first time.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Members Building With Us</div>
+    <h2 class="section-title">Real Operators.<br>Real Companies.</h2>
+    <p class="section-body">119 members across North America are building with T.E.A. — from owners running screw pile companies to superintendents running multi-crew operations. Here is what a few of them have to say.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial featured">
+        <div class="testimonial-mark">"</div>
+        <div class="testimonial-quote">I have run a screw pile and foundations company for years and the one thing nobody ever solved is consistent training across every crew. T.E.A. is the closest thing I have seen to a real system. I am bringing my whole team through it.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SM</div>
+          <div class="testimonial-meta">
+            <div class="testimonial-name">Shane M.</div>
+            <div class="testimonial-role">Owner — Screw Pile Foundations</div>
+          </div>
         </div>
-        <div class="fact-card">
-          <div class="fact-title">The Format</div>
-          <div class="fact-body">Fully illustrated modules. Video explainers. Grade 5 reading level. Built for the worker on a phone at lunch — not in a classroom. 65 to 80% of construction workers are visual learners. T.E.A. is built around that reality.</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-mark">"</div>
+        <div class="testimonial-quote">Finally — someone built it the right way. No fluff. Just the work.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">FS</div>
+          <div class="testimonial-meta">
+            <div class="testimonial-name">Francois S.</div>
+            <div class="testimonial-role">Civil Construction</div>
+          </div>
         </div>
-        <div class="fact-card">
-          <div class="fact-title">The Standard</div>
-          <div class="fact-body">Grounded in WorkSafe BC OHS Section 20, Alberta OHS Code Part 32, OSHA 29 CFR 1926 Subpart P, and Training Within Industry methodology — developed alongside leading industry professionals and regulatory frameworks across North America.</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-mark">"</div>
+        <div class="testimonial-quote">Wish this existed 15 years ago when I was coming up. It would have changed everything.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SR</div>
+          <div class="testimonial-meta">
+            <div class="testimonial-name">Spencer R.</div>
+            <div class="testimonial-role">Superintendent</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TIERS -->
-<section class="tiers">
+<section class="section section-alt">
   <div class="container">
-    <div class="tiers-header">
-      <div class="section-label">The Certification Path</div>
-      <h2 class="section-title">Four Tiers.<br>One Career.</h2>
-      <p class="section-body" style="margin: 0 auto;">
-        Start as a ground crew worker. Finish as someone who can build and run a civil operation. Each tier takes 6 to 8 weeks of consistent study. Each one earns a credential that travels with you.
-      </p>
-    </div>
+    <div class="section-label">The Certification Path</div>
+    <h2 class="section-title">Four Tiers.<br>One Career.</h2>
+    <p class="section-body">Start as a ground crew worker. Finish as someone who can build and run a civil operation. Each tier takes 6 to 8 weeks of consistent study. Each one earns a credential that travels with you.</p>
     <div class="tiers-grid">
       <div class="tier-card featured">
         <div class="tier-num">1</div>
         <div class="tier-badge live">Live Now</div>
         <div class="tier-name">Field<br>Certified</div>
         <div class="tier-role">Ground Crew · Pipe Layer · Grademan</div>
-        <div class="tier-desc">Underground utilities, soil science, pipe installation, excavation safety, grade control, equipment, and quality control. Everything a worker needs to be safe and productive from day one.</div>
-        <div class="tier-modules"><span>43</span> Modules · 11 Chapters</div>
+        <div class="tier-desc">Everything a worker needs to be safe and productive from day one on a civil site.</div>
+        <ul class="tier-skills">
+          <li>Utility identification & strike prevention</li>
+          <li>Soil classification & compaction</li>
+          <li>Pipe belling, bedding & alignment</li>
+          <li>Shoring basics & trench safety</li>
+          <li>Rotating laser setup & grade reading</li>
+          <li>Site grading & drainage fundamentals</li>
+          <li>Equipment identification & safe use</li>
+        </ul>
+        <div class="tier-modules"><span>43</span> Modules · 11 Chapters · $49/month</div>
       </div>
       <div class="tier-card">
         <div class="tier-num">2</div>
         <div class="tier-badge coming">Coming Soon</div>
         <div class="tier-name">Technician<br>Certified</div>
         <div class="tier-role">Lead Hand · Laser Tech · Quality Tech</div>
-        <div class="tier-desc">Advanced soil science, pipe testing, lasers and grade control, advanced surveying, blueprints, and advanced excavation methods.</div>
-        <div class="tier-modules"><span>38</span> Modules · 8 Chapters</div>
+        <div class="tier-desc">Advanced technical skills for workers who run tasks independently without constant supervision.</div>
+        <ul class="tier-skills">
+          <li>Advanced soil science & nuclear density</li>
+          <li>Pipe testing & CCTV inspection</li>
+          <li>Lasers, GPS & grade control systems</li>
+          <li>Advanced surveying & cross sections</li>
+          <li>Blueprint reading & specifications</li>
+          <li>Advanced excavation & shoring systems</li>
+        </ul>
+        <div class="tier-modules"><span>38</span> Modules · 8 Chapters · $97/month</div>
       </div>
       <div class="tier-card">
         <div class="tier-num">3</div>
         <div class="tier-badge coming">Coming Soon</div>
         <div class="tier-name">Professional<br>Certified</div>
         <div class="tier-role">Foreman · Junior Superintendent</div>
-        <div class="tier-desc">Road construction, asphalt, concrete, site utilities, erosion control, crew supervision, estimating, job costing, and scheduling.</div>
-        <div class="tier-modules"><span>37</span> Modules · 10 Chapters</div>
+        <div class="tier-desc">Road construction, site operations, and crew leadership for foremen managing scope and production.</div>
+        <ul class="tier-skills">
+          <li>Road construction & subgrade</li>
+          <li>Asphalt, concrete & curb and gutter</li>
+          <li>Crew supervision & team management</li>
+          <li>Estimating & job costing basics</li>
+          <li>Scheduling & subcontractor coordination</li>
+          <li>Safety leadership & compliance</li>
+        </ul>
+        <div class="tier-modules"><span>37</span> Modules · 10 Chapters · $147/month</div>
       </div>
       <div class="tier-card">
         <div class="tier-num">4</div>
         <div class="tier-badge coming">Coming Soon</div>
         <div class="tier-name">Master<br>Certified</div>
-        <div class="tier-role">Superintendent · Owner · Operator</div>
-        <div class="tier-desc">Business formation, advanced estimating, marketing and sales, hiring and retention, financial management, and scaling operations.</div>
-        <div class="tier-modules"><span>34</span> Modules · 7 Chapters</div>
+        <div class="tier-role">Superintendent · Owner · Operations Manager</div>
+        <div class="tier-desc">Business formation, operations management, and scaling a civil construction company.</div>
+        <ul class="tier-skills">
+          <li>Business formation & legal structure</li>
+          <li>Advanced estimating & profit margins</li>
+          <li>Marketing, sales & proposal development</li>
+          <li>Hiring systems & employee retention</li>
+          <li>QuickBooks, job costing & cash flow</li>
+          <li>Scaling from one crew to multiple</li>
+        </ul>
+        <div class="tier-modules"><span>34</span> Modules · 7 Chapters · $197/month</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TOOLS -->
-<section class="tools">
+<!-- PRICING SECTION -->
+<section class="section">
   <div class="container">
-    <div class="section-label">Free Field Tools</div>
+    <div class="section-label">Membership Tiers</div>
+    <h2 class="section-title">Pick Your Level.<br>Start Today.</h2>
+    <p class="section-body">Every tier includes the 7 day free trial. Cancel anytime in the first week and pay nothing. After that — locked in pricing for the life of your membership.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Standard</div>
+        <div class="price-amount"><span class="price-num">$49</span><span class="price-period">/month</span></div>
+        <ul class="price-features">
+          <li>Tier 1 — 43 modules live now</li>
+          <li>Field Certified credential</li>
+          <li>All field tools access</li>
+          <li>Personal support from founder</li>
+          <li>Community access</li>
+        </ul>
+        <a href="https://www.skool.com/the-excavation-academy-2540/about" class="price-cta" target="_blank">Start Free Trial →</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-best-tag">Most Popular</div>
+        <div class="price-tier">Premium</div>
+        <div class="price-amount"><span class="price-num">$97</span><span class="price-period">/month</span></div>
+        <ul class="price-features">
+          <li>Everything in Standard</li>
+          <li>Tier 2 — Technician Certified</li>
+          <li>How To Use Lasers training</li>
+          <li>Leica Machine Control training</li>
+          <li>Priority founder support</li>
+        </ul>
+        <a href="https://www.skool.com/the-excavation-academy-2540/about" class="price-cta" target="_blank">Start Free Trial →</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">VIP</div>
+        <div class="price-amount"><span class="price-num">$197</span><span class="price-period">/month</span></div>
+        <ul class="price-features">
+          <li>Everything in Premium</li>
+          <li>Tier 3 — Professional Certified</li>
+          <li>Tier 4 — Master Certified</li>
+          <li>Money Map & Financial Foundation</li>
+          <li>Direct line to founder</li>
+        </ul>
+        <a href="https://www.skool.com/the-excavation-academy-2540/about" class="price-cta" target="_blank">Start Free Trial →</a>
+      </div>
+    </div>
+    <div class="pricing-guarantee">
+      <strong>7 day free trial included with every tier.</strong> Cancel anytime before the trial ends and pay $0.
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label">Field Tools</div>
     <h2 class="section-title">Built for the<br>Tailgate.</h2>
     <div class="tools-grid">
       <div class="tools-list">
         <a href="https://theexcavationacademy.github.io/tea-tools/tea-tool-pipe-slope.html" class="tool-item" target="_blank">
           <div class="tool-icon">📐</div>
-          <div class="tool-content">
-            <div class="tool-name">Pipe Slope Calculator</div>
-            <div class="tool-desc">Manhole-to-manhole slope and grade calculations. Instant results on any device.</div>
-          </div>
+          <div class="tool-content"><div class="tool-name">Pipe Slope Calculator</div><div class="tool-desc">Manhole-to-manhole slope and grade calculations. Instant results on any device.</div><span class="tool-tag">Field use · Built for the tailgate</span></div>
         </a>
         <a href="https://theexcavationacademy.github.io/tea-tools/tea-tool-bedding.html" class="tool-item" target="_blank">
           <div class="tool-icon">🪣</div>
-          <div class="tool-content">
-            <div class="tool-name">Backfill & Bedding Calculator</div>
-            <div class="tool-desc">Calculate backfill and bedding volumes for any pipe size and trench configuration.</div>
-          </div>
+          <div class="tool-content"><div class="tool-name">Backfill & Bedding Calculator</div><div class="tool-desc">Calculate backfill and bedding volumes for any pipe size and trench configuration.</div><span class="tool-tag">Field use · Built for the tailgate</span></div>
         </a>
         <a href="https://theexcavationacademy.github.io/tea-tools/tea-haul-tracker.html" class="tool-item" target="_blank">
           <div class="tool-icon">🚛</div>
-          <div class="tool-content">
-            <div class="tool-name">Haul Tracker</div>
-            <div class="tool-desc">Track haul cycles, volumes, and productivity across any site.</div>
-          </div>
+          <div class="tool-content"><div class="tool-name">Haul Tracker</div><div class="tool-desc">Track haul cycles, volumes, and productivity across any site in real time.</div><span class="tool-tag">Field use · Built for the tailgate</span></div>
         </a>
         <a href="https://theexcavationacademy.github.io/tea-tools/tea-tool-cut-fill.html" class="tool-item" target="_blank">
           <div class="tool-icon">⛏️</div>
-          <div class="tool-content">
-            <div class="tool-name">Cut & Fill Estimator</div>
-            <div class="tool-desc">Quick earthwork volume estimates for planning and bidding.</div>
-          </div>
+          <div class="tool-content"><div class="tool-name">Cut & Fill Estimator</div><div class="tool-desc">Quick earthwork volume estimates for planning and bidding — faster than Bluebeam on the tailgate.</div><span class="tool-tag">Field use · Built for the tailgate</span></div>
         </a>
         <a href="https://theexcavationacademy.github.io/tea-tools/tea-tool-unit-price.html" class="tool-item" target="_blank">
           <div class="tool-icon">📊</div>
-          <div class="tool-content">
-            <div class="tool-name">Civil Cost Estimator</div>
-            <div class="tool-desc">15-tab full civil project cost estimating tool. Free preview — 5 uses included.</div>
-          </div>
+          <div class="tool-content"><div class="tool-name">Civil Cost Estimator</div><div class="tool-desc">15-tab full civil project cost estimating tool. Web-based alternative to heavy takeoff software.</div><span class="tool-tag">Field use · Available on the platform</span></div>
         </a>
       </div>
-      <div class="tools-cta">
-        <div class="tools-cta-title">Free.<br>No login.<br>Works anywhere.</div>
-        <div class="tools-cta-body">
-          Every tool on the T.E.A. hub runs directly in your browser. No app download. No account required. Built for real field use — on a phone, in a truck, or on the tailgate.
-        </div>
-        <a href="https://theexcavationacademy.github.io/tea-tools/" class="btn-primary" target="_blank">
-          Open Tool Hub →
-        </a>
-        <div style="font-size: 13px; color: rgba(0,0,0,0.25); font-weight: 300; margin-top: 8px;">
-          Academy members get full access to all tools plus the complete curriculum.
-        </div>
+      <div class="tools-cta-box">
+        <div class="tools-cta-title">Built<br><span>For The</span><br>Field.</div>
+        <div class="tools-cta-body">Every tool on the T.E.A. hub runs directly in your browser. Built for real field use — on a phone, in a truck, or on the tailgate. A lightweight alternative to heavy office takeoff software like Bluebeam.</div>
+        <a href="https://theexcavationacademy.github.io/tea-tools/" class="btn-primary" target="_blank">Open Tool Hub →</a>
+        <div class="tools-micro">Field tools and the complete 138-module curriculum included with every Academy membership. Start your 7 day free trial to unlock everything.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- JOIN -->
+<!-- FAQ SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Frequently Asked</div>
+    <h2 class="section-title">Common<br>Questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Do I need any experience to start?</div>
+        <div class="faq-a">No. Tier 1 is built for someone with zero excavation experience. Modules start with the absolute basics — utility colours, soil types, basic safety — and build from there. If you have been in the field for years, you will move faster but still pick up things nobody ever taught you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does each tier take?</div>
+        <div class="faq-a">6 to 8 weeks per tier with consistent study. Modules are 3 to 5 minutes each. You can complete one over a coffee break or two over a lunch. Full Tier 1 — 43 modules — takes most members about 6 weeks at a comfortable pace.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I cancel anytime?</div>
+        <div class="faq-a">Yes. Every membership starts with a 7 day free trial. Cancel before the trial ends and you pay nothing. After the trial — cancel anytime and the membership ends at the next billing date. No contracts. No long term commitments.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Will my employer recognize the certification?</div>
+        <div class="faq-a">T.E.A. credentials are issued for personal training records. The curriculum is grounded in WorkSafe BC OHS Section 20, Alberta OHS Code Part 32, OSHA 29 CFR 1926 Subpart P, and Training Within Industry methodology — the same standards regulatory bodies and major contractors already follow. If your employer requires specific union or government certifications, T.E.A. complements those rather than replaces them.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does it work outside Canada?</div>
+        <div class="faq-a">Yes. The platform is built for North America wide use. Curriculum aligns with standards across Canadian provinces and US states. The physics of civil excavation does not change at any border. The principles taught — soil behaviour, utility safety, pipe installation, compaction, grade control — apply on every site.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens when I finish a tier?</div>
+        <div class="faq-a">When you complete all modules in your tier — message Cody directly inside the platform. We track your progress together and issue your T.E.A. certification credential for your records.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this only for civil excavation?</div>
+        <div class="faq-a">The core focus is civil excavation and underground construction. But many of the principles — soil science, compaction, grade control, equipment safety, business operations — apply to any heavy civil trade. Landscapers expanding into utilities, foundation contractors, road builders, and general construction professionals all benefit from the curriculum.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="join">
   <div class="container">
-    <h2 class="join-headline">
-      Stop Winging It.<br>
-      <span>Start Building.</span>
-    </h2>
-    <p class="join-sub">
-      114 members enrolled. Tier 1 live now. Tiers 2 through 4 rolling out. Join free — or start with a paid membership and get full access to the curriculum.
-    </p>
-    <div class="hero-cta-group">
-      <a href="https://www.skool.com/the-excavation-academy-2540/about" class="btn-primary">
-        Join The Academy →
-      </a>
-      <a href="mailto:civilexcavationservices@gmail.com" class="btn-secondary">
-        Contact Cody
-      </a>
+    <div class="join-trial">7 Day Free Trial · Cancel Anytime · Pay $0 if Not a Fit</div>
+    <h2 class="join-headline">Stop Winging It.<br><span>Start Building.</span></h2>
+    <p class="join-sub">119 members enrolled. Tier 1 live now. Tiers 2 through 4 rolling out. Join the community and start building crews that know the work.</p>
+    <p class="join-micro">Start your free trial. Connect with operators across North America. Cancel anytime in the first week.</p>
+    <div class="join-btns">
+      <a href="https://www.skool.com/the-excavation-academy-2540/about" class="btn-primary" target="_blank">Start 7 Day Free Trial →</a>
+      <a href="https://theexcavationacademy.github.io/tea-tools/" class="btn-secondary" target="_blank">Field Tools</a>
+      <a href="mailto:civilexcavationservices@gmail.com" class="btn-secondary">Contact Us</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a href="https://www.skool.com/the-excavation-academy-2540/about" target="_blank">Start 7 Day Free Trial →</a>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">The Excavation Academy</div>
     <div class="footer-links">
       <a href="https://www.skool.com/the-excavation-academy-2540/about" target="_blank">Join on Skool</a>
-      <a href="https://www.skool.com/the-excavation-academy-2540/about" target="_blank">Field Tools</a>
+      <a href="https://theexcavationacademy.github.io/tea-tools/" target="_blank">Field Tools</a>
       <a href="mailto:civilexcavationservices@gmail.com">Contact</a>
     </div>
-    <div class="footer-copy">
-      © 2026 The Excavation Academy · Kelowna, BC, Canada · civilexcavationservices@gmail.com
-    </div>
+    <div class="footer-copy">© 2026 The Excavation Academy · Kelowna, BC, Canada · civilexcavationservices@gmail.com · skool.com/the-excavation-academy-2540</div>
   </div>
 </footer>
 
